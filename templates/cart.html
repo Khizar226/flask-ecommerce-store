@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="mb-4">Your Shopping Cart</h2>
+
+{% if cart_items %}
+<table class="table table-hover bg-white shadow-sm rounded">
+    <thead class="table-dark">
+        <tr>
+            <th>Product</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in cart_items %}
+        <tr>
+            <td>{{ item.name }}</td>
+            <td>${{ "%.2f"|format(item.price) }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    <tfoot>
+        <tr>
+            <th>Total</th>
+            <th class="text-success">${{ "%.2f"|format(total) }}</th>
+        </tr>
+    </tfoot>
+</table>
+
+<div class="d-flex justify-content-between mt-4">
+    <a href="/clear-cart" class="btn btn-outline-danger">Empty Cart</a>
+    
+    <form action="/create-checkout-session" method="POST">
+        <button type="submit" class="btn btn-success btn-lg">Checkout with Stripe</button>
+    </form>
+</div>
+{% else %}
+<div class="alert alert-info text-center py-5">
+    <h4>Your cart is empty!</h4>
+    <a href="/" class="btn btn-primary mt-3">Go Shopping</a>
+</div>
+{% endif %}
+{% endblock %}

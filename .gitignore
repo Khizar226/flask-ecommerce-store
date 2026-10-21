@@ -1,0 +1,14 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environment variables
+.env
+
+# SQLite Database (You don't want to upload your local database)
+shop.db
+
+# Virtual Environments
+venv/
+env/
