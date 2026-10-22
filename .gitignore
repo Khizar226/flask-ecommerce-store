@@ -12,3 +12,9 @@ shop.db
 # Virtual Environments
 venv/
 env/
+# Flask / tooling
+instance/
+.venv/
+.pytest_cache/
+.ruff_cache/
+*.db
