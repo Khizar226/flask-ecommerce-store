@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Your orders{% endblock %}
+{% block content %}
+<h1 class="h3 mb-4">Your orders</h1>
+{% if orders %}
+<div class="card shadow-sm">
+    <div class="table-responsive">
+        <table class="table align-middle mb-0">
+            <thead><tr><th>Order</th><th>Date</th><th>Items</th><th>Status</th><th class="text-end">Total</th></tr></thead>
+            <tbody>
+            {% for order in orders %}
+                <tr>
+                    <td class="fw-semibold">#{{ order.id }}</td>
+                    <td>{{ order.created_at.strftime('%d %b %Y') }}</td>
+                    <td class="small">{% for item in order.items %}{{ item.quantity }} × {{ item.name }}{% if not loop.last %}, {% endif %}{% endfor %}</td>
+                    <td>
+                        {% if order.status == 'paid' %}<span class="badge text-bg-success">Paid</span>
+                        {% else %}<span class="badge text-bg-secondary">{{ order.status | capitalize }}</span>{% endif %}
+                    </td>
+                    <td class="text-end">{{ order.total_cents | money }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% else %}
+<div class="card p-5 text-center">
+    <p class="mb-0">No orders yet.</p>
+</div>
+{% endif %}
+{% endblock %}

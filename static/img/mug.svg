@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 480" role="img" aria-label="Flask coffee mug">
+  <rect width="600" height="480" fill="#fef3c7"/>
+  <circle cx="110" cy="390" r="130" fill="#fde68a"/>
+  <path d="M265 120 Q275 85 260 60 M305 120 Q315 85 300 60 M345 120 Q355 85 340 60" stroke="#d6a76a" stroke-width="8" fill="none" stroke-linecap="round"/>
+  <path d="M390 190 h30 a50 50 0 0 1 0 100 h-30" stroke="#f8fafc" stroke-width="26" fill="none"/>
+  <rect x="190" y="140" width="210" height="230" rx="26" fill="#f8fafc"/>
+  <rect x="190" y="140" width="210" height="34" rx="17" fill="#e2e8f0"/>
+  <path d="M265 230 h60 v20 l30 70 q4 12 -10 12 h-100 q-14 0 -10 -12 l30 -70 z" fill="#4f46e5"/>
+  <rect x="268" y="214" width="54" height="16" rx="5" fill="#4f46e5"/>
+  <ellipse cx="295" cy="390" rx="130" ry="14" fill="#f59e0b" opacity=".25"/>
+</svg>

@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 480" role="img" aria-label="Mechanical keyboard">
+  <rect width="600" height="480" fill="#dcfce7"/>
+  <circle cx="500" cy="400" r="150" fill="#bbf7d0"/>
+  <g transform="translate(300 245) rotate(-8)">
+    <rect x="-230" y="-95" width="460" height="190" rx="22" fill="#334155"/>
+    <rect x="-218" y="-83" width="436" height="166" rx="14" fill="#1e293b"/>
+    <g fill="#e2e8f0">
+      <g id="row">
+        <rect x="-205" y="-70" width="34" height="34" rx="6"/><rect x="-163" y="-70" width="34" height="34" rx="6"/>
+        <rect x="-121" y="-70" width="34" height="34" rx="6"/><rect x="-79" y="-70" width="34" height="34" rx="6"/>
+        <rect x="-37" y="-70" width="34" height="34" rx="6"/><rect x="5" y="-70" width="34" height="34" rx="6"/>
+        <rect x="47" y="-70" width="34" height="34" rx="6"/><rect x="89" y="-70" width="34" height="34" rx="6"/>
+        <rect x="131" y="-70" width="34" height="34" rx="6"/><rect x="173" y="-70" width="34" height="34" rx="6"/>
+      </g>
+      <use href="#row" y="42"/><use href="#row" y="84"/>
+      <rect x="-121" y="56" width="244" height="34" rx="6"/>
+    </g>
+    <rect x="173" y="-70" width="34" height="34" rx="6" fill="#4f46e5"/>
+    <rect x="-205" y="56" width="76" height="34" rx="6" fill="#4f46e5"/>
+  </g>
+</svg>

@@ -1,42 +1,56 @@
 {% extends "base.html" %}
+{% block title %}Cart{% endblock %}
 {% block content %}
-<h2 class="mb-4">Your Shopping Cart</h2>
+<h1 class="h3 mb-4">Your cart</h1>
 
-{% if cart_items %}
-<table class="table table-hover bg-white shadow-sm rounded">
-    <thead class="table-dark">
-        <tr>
-            <th>Product</th>
-            <th>Price</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for item in cart_items %}
-        <tr>
-            <td>{{ item.name }}</td>
-            <td>${{ "%.2f"|format(item.price) }}</td>
-        </tr>
-        {% endfor %}
-    </tbody>
-    <tfoot>
-        <tr>
-            <th>Total</th>
-            <th class="text-success">${{ "%.2f"|format(total) }}</th>
-        </tr>
-    </tfoot>
-</table>
+{% if lines %}
+<div class="card shadow-sm">
+    <div class="table-responsive">
+        <table class="table align-middle mb-0">
+            <thead>
+                <tr><th>Product</th><th>Price</th><th>Quantity</th><th class="text-end">Total</th></tr>
+            </thead>
+            <tbody>
+            {% for line in lines %}
+                <tr>
+                    <td class="fw-semibold">{{ line.product.name }}</td>
+                    <td>{{ line.product.price_cents | money }}</td>
+                    <td>
+                        <form action="{{ url_for('store.update_cart', product_id=line.product.id) }}" method="post"
+                              class="d-flex gap-2 m-0">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                            <input type="number" name="quantity" value="{{ line.quantity }}" min="0" max="20"
+                                   class="form-control form-control-sm qty-input" aria-label="Quantity">
+                            <button type="submit" class="btn btn-sm btn-outline-secondary">Update</button>
+                        </form>
+                    </td>
+                    <td class="text-end">{{ line.total_cents | money }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr><th colspan="3">Total</th><th class="text-end">{{ total_cents | money }}</th></tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
 
-<div class="d-flex justify-content-between mt-4">
-    <a href="/clear-cart" class="btn btn-outline-danger">Empty Cart</a>
-    
-    <form action="/create-checkout-session" method="POST">
-        <button type="submit" class="btn btn-success btn-lg">Checkout with Stripe</button>
+<div class="d-flex justify-content-between align-items-center mt-4">
+    <form action="{{ url_for('store.clear_cart') }}" method="post" class="m-0">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <button type="submit" class="btn btn-outline-danger">Empty cart</button>
+    </form>
+    <form action="{{ url_for('checkout.create_checkout_session') }}" method="post" class="m-0">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <button type="submit" class="btn btn-brand btn-lg">
+            {% if current_user.is_authenticated %}Checkout with Stripe{% else %}Log in to check out{% endif %}
+        </button>
     </form>
 </div>
 {% else %}
-<div class="alert alert-info text-center py-5">
-    <h4>Your cart is empty!</h4>
-    <a href="/" class="btn btn-primary mt-3">Go Shopping</a>
+<div class="card p-5 text-center">
+    <h2 class="h5">Your cart is empty</h2>
+    <a href="{{ url_for('store.home') }}" class="btn btn-brand mt-3 align-self-center">Browse products</a>
 </div>
 {% endif %}
 {% endblock %}

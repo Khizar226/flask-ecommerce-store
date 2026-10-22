@@ -1,8 +1,17 @@
 {% extends "base.html" %}
+{% block title %}Order confirmed{% endblock %}
 {% block content %}
-<div class="text-center mt-5 py-5 card shadow-sm">
-    <h1 class="text-success display-4">🎉 Payment Successful!</h1>
-    <p class="lead mt-3">Thank you for your purchase. Your order is being processed.</p>
-    <a href="/" class="btn btn-primary mt-3">Continue Shopping</a>
+<div class="card shadow-sm text-center p-5">
+    <h1 class="h3 text-success">Payment confirmed</h1>
+    <p class="muted">Order #{{ order.id }} · {{ order.total_cents | money }}</p>
+    <ul class="list-unstyled mb-4">
+        {% for item in order.items %}
+            <li>{{ item.quantity }} × {{ item.name }}</li>
+        {% endfor %}
+    </ul>
+    <div class="d-flex gap-2 justify-content-center">
+        <a href="{{ url_for('store.orders') }}" class="btn btn-outline-dark">View orders</a>
+        <a href="{{ url_for('store.home') }}" class="btn btn-brand">Continue shopping</a>
+    </div>
 </div>
 {% endblock %}

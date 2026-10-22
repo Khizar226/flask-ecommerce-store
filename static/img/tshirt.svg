@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 480" role="img" aria-label="Python T-shirt">
+  <rect width="600" height="480" fill="#e0e7ff"/>
+  <circle cx="470" cy="90" r="120" fill="#c7d2fe"/>
+  <path d="M220 110 L170 125 L100 190 L150 250 L190 215 L190 400 L410 400 L410 215 L450 250 L500 190 L430 125 L380 110 Q300 160 220 110 Z" fill="#1e293b"/>
+  <path d="M220 110 Q300 160 380 110 Q300 140 220 110 Z" fill="#0f172a"/>
+  <g transform="translate(300 290)">
+    <rect x="-46" y="-52" width="58" height="58" rx="16" fill="#3b82f6"/>
+    <rect x="-12" y="-6" width="58" height="58" rx="16" fill="#facc15"/>
+    <circle cx="-30" cy="-36" r="6" fill="#1e293b"/>
+    <circle cx="30" cy="36" r="6" fill="#1e293b"/>
+  </g>
+</svg>

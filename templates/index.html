@@ -1,25 +1,37 @@
 {% extends "base.html" %}
+{% block title %}Shop{% endblock %}
 {% block content %}
-<div class="row mb-4 text-center">
-    <h1>Welcome to DevStore</h1>
-    <p class="text-muted">Gear for Developers, by Developers</p>
-</div>
+<section class="hero text-center py-4 mb-4">
+    <h1 class="display-6">Gear for developers</h1>
+    <p class="muted mb-0">Small catalog, real checkout. Pay with a Stripe test card.</p>
+</section>
 
+{% if products %}
 <div class="row row-cols-1 row-cols-md-3 g-4">
     {% for product in products %}
     <div class="col">
         <div class="card h-100 shadow-sm">
-            <img src="{{ product.image_url }}" class="card-img-top" alt="{{ product.name }}" style="height: 250px; object-fit: cover;">
-            <div class="card-body">
-                <h5 class="card-title">{{ product.name }}</h5>
-                <p class="card-text text-muted">{{ product.description }}</p>
-                <h4 class="text-success">${{ "%.2f"|format(product.price) }}</h4>
-            </div>
-            <div class="card-footer bg-white border-0">
-                <a href="/add-to-cart/{{ product.id }}" class="btn btn-primary w-100">Add to Cart</a>
+            <img src="{{ product.image_url }}" class="product-img" alt="{{ product.name }}" loading="lazy">
+            <div class="card-body d-flex flex-column">
+                <h2 class="h5 mb-1">{{ product.name }}</h2>
+                <p class="muted small flex-grow-1">{{ product.description }}</p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <span class="price">{{ product.price_cents | money }}</span>
+                    <form action="{{ url_for('store.add_to_cart', product_id=product.id) }}" method="post" class="m-0">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                        <input type="hidden" name="quantity" value="1">
+                        <button type="submit" class="btn btn-brand">Add to cart</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
     {% endfor %}
 </div>
+{% else %}
+<div class="card p-5 text-center">
+    <p class="mb-1">No products yet.</p>
+    <p class="muted small mb-0">Run <code>flask --app app seed</code> to add sample products.</p>
+</div>
+{% endif %}
 {% endblock %}
